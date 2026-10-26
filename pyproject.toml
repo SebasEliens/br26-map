@@ -1,0 +1,16 @@
+[project]
+name = "br-map"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "geopandas>=1.2.0",
+    "jupyter>=1.1.1",
+    "mapclassify>=2.11.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "requests>=2.34.2",
+    "scipy>=1.18.1",
+]
