@@ -32,43 +32,10 @@
       margin-bottom: 0.5rem;
     }
 
-    header p {
+    header .subtitle {
       font-size: 0.95rem;
       color: #8b949e;
       line-height: 1.6;
-    }
-
-    .formula {
-      display: inline-block;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.9rem;
-      color: #79c0ff;
-      margin: 0.75rem 0;
-    }
-
-    .legend {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.75rem;
-    }
-
-    .legend span {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-      color: #8b949e;
-    }
-
-    .dot {
-      width: 12px; height: 12px; border-radius: 50%;
-      flex-shrink: 0;
     }
 
     .map-card {
@@ -79,12 +46,6 @@
       max-width: 960px;
       width: 100%;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    }
-
-    .map-card img {
-      display: block;
-      width: 100%;
-      height: auto;
     }
 
     .tabs {
@@ -108,7 +69,49 @@
     }
 
     .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
+    .tab-panel.active { display: flex; flex-direction: column; }
+
+    .tab-desc {
+      padding: 0.7rem 1.1rem;
+      font-size: 0.82rem;
+      color: #8b949e;
+      line-height: 1.55;
+      border-bottom: 1px solid #21262d;
+      background: #0d1117;
+    }
+
+    .tab-desc strong { color: #c9d1d9; }
+
+    .formula {
+      display: inline;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.85em;
+      color: #79c0ff;
+    }
+
+    .legend {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .map-frame {
+      width: 100%;
+      border: none;
+      display: block;
+      background: #0d1117;
+    }
 
     footer {
       margin-top: 2rem;
@@ -125,12 +128,7 @@
 
 <header>
   <h1>Eleições Presidenciais Brasileiras 2026</h1>
-  <p>Variação relativa de votos entre o 1° e o 2° turno</p>
-  <div class="formula">(Lula R2 − R1) − (Flávio R2 − R1)</div>
-  <div class="legend">
-    <span><span class="dot" style="background:#B71C1C"></span>Lula ganhou mais votos relativos</span>
-    <span><span class="dot" style="background:#1565C0"></span>Flávio ganhou mais votos relativos</span>
-  </div>
+  <p class="subtitle">Mapas interativos de resultados — passe o mouse sobre estados ou municípios para ver detalhes</p>
 </header>
 
 <div class="map-card">
@@ -138,11 +136,38 @@
     <div class="tab active" onclick="switchTab(0)">Por estado</div>
     <div class="tab" onclick="switchTab(1)">Por município</div>
   </div>
+
+  <!-- State tab: full swing (both rounds via TSE API) -->
   <div class="tab-panel active">
-    <img src="election_map_states.png" alt="Swing por estado — Eleições 2026" />
+    <div class="tab-desc">
+      <strong>Métrica:</strong>
+      variação na vantagem de Lula entre os dois turnos,
+      em pontos percentuais dos votos válidos (excl. brancos e nulos):
+      <span class="formula">(Lula% − Flávio%)<sub>2T</sub> − (Lula% − Flávio%)<sub>1T</sub></span>.
+      <span class="legend">
+        <span><span class="dot" style="background:#B71C1C"></span>Lula avançou</span>
+        <span><span class="dot" style="background:#1565C0"></span>Flávio avançou</span>
+      </span>
+    </div>
+    <iframe class="map-frame" src="interactive_states.html" height="640"
+            title="Variação entre turnos por estado"></iframe>
   </div>
+
+  <!-- Municipality tab: R1-only until Round-2 bulk CSV is published -->
   <div class="tab-panel">
-    <img src="election_map.png" alt="Swing por município — Eleições 2026" />
+    <div class="tab-desc">
+      <strong>Dados do 1° turno.</strong>
+      Exibe a vantagem de Lula sobre Flávio como % dos votos válidos por município.
+      A métrica de variação entre turnos
+      <span class="formula">(Lula% − Flávio%)<sub>2T</sub> − (Lula% − Flávio%)<sub>1T</sub></span>
+      será calculada automaticamente quando o TSE publicar o CSV de seções do 2° turno.
+      <span class="legend">
+        <span><span class="dot" style="background:#B71C1C"></span>Lula à frente</span>
+        <span><span class="dot" style="background:#1565C0"></span>Flávio à frente</span>
+      </span>
+    </div>
+    <iframe class="map-frame" src="interactive_mun.html" height="720"
+            title="Vantagem por município — 1° turno"></iframe>
   </div>
 </div>
 
