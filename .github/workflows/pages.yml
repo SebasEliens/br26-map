@@ -44,6 +44,8 @@ jobs:
           cp index.html _site/
           cp election_map_states.png _site/
           cp election_map.png _site/
+          cp interactive_states.html _site/
+          cp interactive_mun.html _site/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
