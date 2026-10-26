@@ -7,7 +7,7 @@ Visualização da variação relativa de votos entre o 1° e o 2° turno das ele
 **Métrica por estado/município:**
 
 ```
-(Lula R2 − Lula R1) − (Flávio R2 − Flávio R1)
+(Lula 2T − Lula 1T) − (Flávio 2T − Flávio 1T)
 ```
 
 normalizada pelo total de votos válidos. Vermelho = Lula ganhou mais votos relativos; azul = Flávio ganhou mais.
@@ -15,7 +15,7 @@ normalizada pelo total de votos válidos. Vermelho = Lula ganhou mais votos rela
 ## Dados
 
 - Votos por estado: [TSE API de resultados](https://resultados.tse.jus.br) (ambos os turnos disponíveis)
-- Votos por município: [TSE dados abertos](https://dadosabertos.tse.jus.br) — `votacao_secao_2026_BR.zip`
+- Votos por município: [TSE dados abertos](https://dadosabertos.tse.jus.br) — `votaçao_secao_2026_BR.zip`
 - Geometrias: [tbrugz/geodata-br](https://github.com/tbrugz/geodata-br)
 
 ## Execução local
