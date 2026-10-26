@@ -4,7 +4,7 @@ on:
   push:
     branches: [master]
   schedule:
-    - cron: '0 */6 * * *'   # re-run every 6 h — picks up new TSE data automatically
+    - cron: '0 */24 * * *'   # re-run every 24 h — picks up new TSE data automatically
   workflow_dispatch:
 
 permissions:
